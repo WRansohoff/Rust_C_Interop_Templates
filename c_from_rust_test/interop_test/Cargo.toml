@@ -1,0 +1,9 @@
+[package]
+name = "interop_test"
+version = "0.1.0"
+authors = ["WRR"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+cty = "0.2.0"
