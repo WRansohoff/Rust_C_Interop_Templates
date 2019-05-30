@@ -1,0 +1,12 @@
+[package]
+name = "interop-test"
+version = "0.1.0"
+authors = ["WRR"]
+edition = "2018"
+
+[lib]
+name = "interop_test"
+crate-type = ["cdylib"]
+#crate-type = ["staticlib"]
+
+[dependencies]
