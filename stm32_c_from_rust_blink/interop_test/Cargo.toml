@@ -1,0 +1,30 @@
+[package]
+name = "interop_test"
+version = "0.1.0"
+authors = ["WRR"]
+edition = "2018"
+build = "build.rs"
+
+[build-dependencies]
+bindgen = "0.49.2"
+
+[dependencies]
+cortex-m = "0.5.8"
+cortex-m-rt = "0.6.5"
+panic-halt = "0.2.0"
+cty = "0.2.0"
+
+# Local STM32 Peripheral Access Crates.
+[dependencies.stm32_pac]
+path = "../../../../stm32_pac"
+version = "0.0.1"
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
+
+# Define which board to build for.
+[features]
+default = [ "L031K6_NUCLEO" ]
+L031K6_NUCLEO = [ "stm32_pac/stm32l0x1_rt" ]
