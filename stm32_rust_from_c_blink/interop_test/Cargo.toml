@@ -1,0 +1,36 @@
+[package]
+name = "interop-test"
+version = "0.1.0"
+authors = ["WRR"]
+edition = "2018"
+
+[lib]
+name = "interop_test"
+#crate-type = ["cdylib"]
+crate-type = ["staticlib"]
+
+[dependencies]
+cortex-m = "0.5.8"
+panic-halt = "0.2.0"
+
+# Local STM32 Peripheral Access Crates.
+[dependencies.stm32_pac]
+path = "../../../../stm32_pac"
+version = "0.0.1"
+
+# Optimizations like LTO are required if the library
+# needs to fit in devices with limited Flash memory.
+[profile.dev]
+codegen-units = 1
+debug = true
+lto = true
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true
+
+# Define which board to build for.
+[features]
+default = [ "L031K6_NUCLEO" ]
+L031K6_NUCLEO = [ "stm32_pac/stm32l0x1" ]
